@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="index.css">
+<head>
+	<title>Trivia Game</title>
+</head>
+<body>
+
+<section class="startPage">
+	<div class="startPageContent">
+		<h1>Are you ready to play trivia?!!??</h1>
+		<button class="start">Start Game</button>
+	</div>	
+</section>
+
+<section class="setup">
+	<div class="setupContent">
+		<h2>Please Select your Category</h2>
+		<select class="category">
+			<option value="gn">General Knowledge</option>
+			<option value="enB">Entertainment: Books</option>
+			<option value="enF">Entertainment: Film</option>
+			<option value="enM">Entertainment: Music</option>
+			<option value="enMTh">Entertainment: Musicals and Theater</option>
+			<option value="enT">Entertainment: Television</option>
+			<option value="enVG">Entertainment: Video Games</option>
+			<option value="enBG">Entertainment: Board Games</option>
+			<option value="sciNa">Science and Nature</option>
+			<option value="sciC">Science: Computers</option>
+			<option value="sciM">Science: Mathematics</option>
+			<option value="myth">Mythology</option>
+			<option value="sport">Sports</option>
+			<option value="geo">Geography</option>
+			<option value="hist">History</option>
+			<option value="poli">Politics</option>
+			<option value="art">Art</option>
+			<option value="celeb">Celebrities</option>
+			<option value="animal">Animals</option>
+			<option value="veh">Vehicles</option>
+		</select>
+		
+		<h2>Choose your Difficulty Level</h2>
+		<select class="difficulty">
+			<option value="easy">Easy</option>
+			<option value="medium">Medium</option>
+			<option value="hard">Hard</option>
+		</select>	
+		<button class="button">Submit</button>
+	</div>
+</section>
+
+<section class="questionPage">
+	<div class="question"></div>
+	<div class="answers"></div>
+
+	<button class="nextQ">Next Question</button>
+	
+</section>
+
+<script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+<script type="text/javascript" src="index.js"></script>
+</body>
+</html>
