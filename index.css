@@ -26,12 +26,32 @@ html, body, section{
 	position: relative;
 }
 
-
-
-
 .questionPage{
 	display:none;
 	border:solid 4px green;
 	height:500px;
 	width:500px;
 }
+
+.correct, .incorrect{
+	display:none;
+	height:300px;
+	width:300px;
+	position:relative;
+	top:300px;
+	margin:auto;
+	color:white;
+}
+
+.lightBox{
+	display:none;
+	height:1000px;
+	width:100%;
+	background-color: grey;
+	opacity: 0.5;
+}
+
+.resultsPage{
+	display:none;
+}
+

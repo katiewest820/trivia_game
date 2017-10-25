@@ -21,7 +21,7 @@
 			<option value="enB">Entertainment: Books</option>
 			<option value="enF">Entertainment: Film</option>
 			<option value="enM">Entertainment: Music</option>
-			<option value="enMTh">Entertainment: Musicals and Theater</option>
+			<!--<option value="enMTh">Entertainment: Musicals and Theater</option>-->
 			<option value="enT">Entertainment: Television</option>
 			<option value="enVG">Entertainment: Video Games</option>
 			<option value="enBG">Entertainment: Board Games</option>
@@ -33,7 +33,7 @@
 			<option value="geo">Geography</option>
 			<option value="hist">History</option>
 			<option value="poli">Politics</option>
-			<option value="art">Art</option>
+			<!--<option value="art">Art</option>-->
 			<option value="celeb">Celebrities</option>
 			<option value="animal">Animals</option>
 			<option value="veh">Vehicles</option>
@@ -48,14 +48,35 @@
 		<button class="button">Submit</button>
 	</div>
 </section>
+<section class="lightBox">
+	<div class="incorrect">
+		<h1>Wrong! Better luck next time</h1>
+	</div>
+	<div class="correct">
+		<h1>Correct! Congrats!</h1>
+	</div>
+</section>	
 
 <section class="questionPage">
 	<div class="question"></div>
-	<div class="answers"></div>
+	<div class="answersSection">
+		<form class="answers">
+		</form>	
+	</div>
+	
 
+	<!--<button class="submitAnswer">Submit Answer</button>-->
 	<button class="nextQ">Next Question</button>
 	
 </section>
+
+<section class="resultsPage">
+	<div class=resultsScore></div>
+	<button class="playAgain">Play Again</button>
+
+</section>	
+
+
 
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
