@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css" href="index.css">
+<link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<meta name=viewport content="width=device-width, initial-scale=1">
 <head>
 	<title>Trivia Game</title>
 </head>
@@ -8,53 +11,57 @@
 
 <section class="startPage">
 	<div class="startPageContent">
-		<h1>Are you ready to play trivia?!!??</h1>
+		<h1 class="greeting">Are you ready to play trivia?!!??</h1>
 		<button class="start">Start Game</button>
 	</div>	
 </section>
 
 <section class="setup">
 	<div class="setupContent">
-		<h2>Please Select your Category</h2>
-		<select class="category">
-			<option value="gn">General Knowledge</option>
-			<option value="enB">Entertainment: Books</option>
-			<option value="enF">Entertainment: Film</option>
-			<option value="enM">Entertainment: Music</option>
+		<h1 class="categoryHeader">Please Select a <span>Category</span><br>and <span>difficulty</span> level</h1>
+		<div class="categoryDropdowns">
+			<select class="category">
+				<option value="gn">General Knowledge</option>
+				<option value="enB">Entertainment: Books</option>
+				<option value="enF">Entertainment: Film</option>
+				<option value="enM">Entertainment: Music</option>
 			<!--<option value="enMTh">Entertainment: Musicals and Theater</option>-->
-			<option value="enT">Entertainment: Television</option>
-			<option value="enVG">Entertainment: Video Games</option>
-			<option value="enBG">Entertainment: Board Games</option>
-			<option value="sciNa">Science and Nature</option>
-			<option value="sciC">Science: Computers</option>
-			<option value="sciM">Science: Mathematics</option>
-			<option value="myth">Mythology</option>
-			<option value="sport">Sports</option>
-			<option value="geo">Geography</option>
-			<option value="hist">History</option>
-			<option value="poli">Politics</option>
+				<option value="enT">Entertainment: Television</option>
+				<option value="enVG">Entertainment: Video Games</option>
+				<option value="enBG">Entertainment: Board Games</option>
+				<option value="sciNa">Science and Nature</option>
+				<option value="sciC">Science: Computers</option>
+				<option value="sciM">Science: Mathematics</option>
+				<option value="myth">Mythology</option>
+				<option value="sport">Sports</option>
+				<option value="geo">Geography</option>
+				<option value="hist">History</option>
+				<option value="poli">Politics</option>
 			<!--<option value="art">Art</option>-->
-			<option value="celeb">Celebrities</option>
-			<option value="animal">Animals</option>
-			<option value="veh">Vehicles</option>
-		</select>
-		
-		<h2>Choose your Difficulty Level</h2>
-		<select class="difficulty">
-			<option value="easy">Easy</option>
-			<option value="medium">Medium</option>
-			<option value="hard">Hard</option>
-		</select>	
-		<button class="button">Submit</button>
+				<option value="celeb">Celebrities</option>
+				<option value="animal">Animals</option>
+				<option value="veh">Vehicles</option>
+			</select>
+			
+			<select class="difficulty">
+				<option value="easy">Easy</option>
+				<option value="medium">Medium</option>
+				<option value="hard">Hard</option>
+			</select>	
+			<button class="button">Submit</button>
+		</div>
 	</div>
 </section>
 <section class="lightBox">
-	<div class="incorrect">
+	<!--<div class="incorrect">
 		<h1>Wrong! Better luck next time</h1>
 	</div>
 	<div class="correct">
 		<h1>Correct! Congrats!</h1>
-	</div>
+	</div> -->
+	<div class="noAnswer">
+		<h1>Please make a selection</h1>
+	</div>	
 </section>	
 
 <section class="questionPage">
@@ -72,7 +79,8 @@
 
 <section class="resultsPage">
 	<div class=resultsScore></div>
-	<button class="playAgain">Play Again</button>
+	<div class="correctAnswers"></div>
+	<div class="playAgain"></div>
 
 </section>	
 
