@@ -13,7 +13,7 @@ html, body, section{
 	display: none;
 }
 
-.startPage, .setup, .questionPage{
+.startPage, .setup, .questionPage, .resultsPage{
 	position: relative;
 	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
 	background-size: 400% 400%;
@@ -48,7 +48,7 @@ html, body, section{
 	color:white;
 }
 
-.startPageContent h1, .setupContent h1{
+.startPageContent h1, .setupContent h1, .resultsScore{
 	font-size: 40px;
 	color: white;
 	font-weight: bold;
@@ -89,16 +89,17 @@ span{
 }
 
 .questionSection{
+	position: relative;
 	display:grid;
-	grid-template-rows: 2fr 1fr;
+	grid-template-rows: 3fr 2fr 1fr 1fr;
 	margin:auto;
-	margin-top: 30%;
+	margin-top: 18%;
 	background-color:white;
 	border:solid 4px black;
-	height:60%;
+	height:80%;
 	width:80%;
 	border:solid 7px black;
-	padding: 10px;
+	padding: 20px;
 }
 
 .question{
@@ -113,16 +114,32 @@ span{
 .answers{
 	display: grid;
     grid-template-columns: 10% 40% 10% 40%;
+    margin: 0 20px;
 	font-size: 16px;
-	margin:10px;
+	text-align: center;
+	margin:25px;
 }
 
 .answers input{
 		margin: 5px;
 	}
+
+.nextQ{
+	justify-self: center;
+	width:180px;
+	margin-top:20px;
+
+}
+
+.questionNumber{
+	position: absolute;
+	bottom:15px;
+	left:15px;
+	font-weight: bold;
+}	
 	
 
-.correct, .incorrect, .noAnswer{
+.noAnswer{
 	display:none;
 	height:200px;
 	width:200px;
@@ -141,7 +158,10 @@ span{
 
 .resultsPage{
 	display:none;
+	height: 1600px;
 	position: relative;
+	overflow: visible;
+	padding-top:2%;
 }
 
 .resultsScore{
@@ -150,7 +170,8 @@ span{
 	font-weight:bold;
 	position:relative;
 	text-align:center;
-	top: 50%;
+	margin:auto;
+	top: 20%;
 	animation-name: slide;
 	animation-delay: 3s;
 	animation-duration: 3s;
@@ -159,14 +180,17 @@ span{
 }
 
 @keyframes slide{
-	0%   {top:50%;}
+	0%   {top:20%;}
     100% {top:0%;}
 
 }
-
 .correctAnswers{
-	display: grid;
+	display: none;
 	padding: 5%;
+	background-color: white;
+	border: solid 5px black;
+	font-weight: bold;
+	margin: 5% 10%;
 }
 
 .correctAnswers div{
@@ -175,22 +199,10 @@ span{
 
 .playAgain{
 	display:none;
-	position: absolute;
-	left: 40%;
+	justify-self:center;
+	padding: 15px 40px;
+	align-self:center;
 }
-
-.resultsQuestion{
-	color:blue;
-}
-
-.resultsCorrect{
-	color:green;
-}
-
-.resultsUA{
-	color:red;
-}
-
 
 
 @media (min-width:640px){
@@ -200,7 +212,9 @@ span{
 	}
 
 	.questionSection{
-		margin-top: 15%;
+		height:60%;
+		padding: 40px;
+		margin-top: 10%;
 	}
 
 	.question{
@@ -214,18 +228,29 @@ span{
 		text-align: center;
 	}
 
+	.nextQ{
+		margin: 10px 0px;
+	}
+
 	.correctAnswers{
 		grid-template-columns: 2fr 1fr 1fr;
 		justify-content:center;
+		padding: 2%;
 	}
 
-	.resultsScore, .playAgain{
-		left: 40%;
+	.resultsPage{
+		height: 1000px;
+		grid-template-rows: 3% 94% 3%;
+		padding: 2% 0%;
 	}
+
+	.resultsScore{
+		top: 30%;
+	}	
 
 @keyframes slide{
-		0%   {left:40%; top:50%;}
-    	100% {left:0%; top:0%;}
+		0%   {top:30%;}
+    	100% { top:0%;}
 	}
 	
 

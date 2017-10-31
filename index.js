@@ -2,7 +2,7 @@ let sessionToken;
 let questionInfo = 0;
 let apiInfo;
 let userAnsArr = [];
-//let correct;
+let correctAnsArr = []
 let score = 0;
 let categories = {
 	gn: 9,
@@ -77,6 +77,7 @@ function callAPI(){
 function loadQuestion(){
 	if(questionInfo <= 9){
 	answers.push(apiInfo[questionInfo].correct_answer);
+	correctAnsArr.push(apiInfo[questionInfo].correct_answer);
 
 	for(let i = 0; i < apiInfo[questionInfo].incorrect_answers.length; i++){
 	answers.push(apiInfo[questionInfo].incorrect_answers[i]);
@@ -84,8 +85,9 @@ function loadQuestion(){
 	console.log(answers)
 	shuffleArray(answers)
 	$('.question').html(apiInfo[questionInfo].question);
+	$('.questionNumber').html(`${questionInfo + 1} of 10`);
 	for(let i = 0; i < answers.length; i++){
-		$('.answers').append(`<input type="radio" value="${answers[i]}">${answers[i]}`);
+		$('.answers').append(`<input type="radio" name="answer" value="${answers[i]}">${answers[i]}`);
 	}
 	$('.categoryHeader').addClass('animated bounceOutRight');
 	$('.categoryDropdowns').addClass('animated bounceOutLeft');	
@@ -141,15 +143,8 @@ function userAnswer(){
 
 function correctAnswer(){
 	if (ua == apiInfo[questionInfo].correct_answer){
-		//$('.questionPage').fadeOut(300).delay(1200).fadeIn(300)
-		//$('.lightBox').fadeIn(300).delay(1000).fadeOut(300);
-		//$('.correct').fadeIn(200).delay(1000).fadeOut(300);
 		score = score + 1;
-	}//else{
-		//$('.questionPage').fadeOut(300).delay(1200).fadeIn(300)
-		//$('.lightBox').fadeIn(300).delay(1000).fadeOut(300);
-		//$('.incorrect').fadeIn(200).delay(1000).fadeOut(300);
-	//}
+	}
 }
 
 function endOfGame(){
@@ -161,28 +156,42 @@ function endOfGame(){
 
 function resultsPage(){
 	$('.questionPage').fadeOut(400);
-	$('.resultsPage').fadeIn(400);
+	$('.resultsPage').fadeIn(400).css('display', 'grid');
 	$('.resultsScore').html(`Your Score is: ${score} out of 10`);
-
+	//resultsColor();
 	setTimeout(function(){
 		for(let i = 0; i < 10; i++){
-		$('.correctAnswers').append(`<div class="resultsQuestion">Question ${[i + 1]}: ${apiInfo[i].question}</div><div class="resultsCorrect">Correct answer: ${apiInfo[i].correct_answer}</div><div class="resultsUA">Your answer: ${userAnsArr[i]}</div>` )
+		$('.correctAnswers').fadeIn(400).css('display', 'grid').append(`<div class="resultsQuestion">Q ${[i + 1]}:
+		${apiInfo[i].question}</div><div class="resultsCorrect">Correct answer: ${apiInfo[i].correct_answer}</div>
+		<div class="resultsUA${i}">Your answer: ${userAnsArr[i]}</div>` )
 		}
+		resultsColor();
 		$('.playAgain').fadeIn(400);
-		//$('.resultsPage').append(`<button class="playAgain">Play Again</button>`);
-		//$('.playAgainDiv').fadeIn(400).add(`<button class="playAgain">Play Again</button>`);
 	}, 6000);
+	
+}
+
+function resultsColor(){
+	console.log('hello')
+	console.log(correctAnsArr + 'hello-c')
+	console.log(userAnsArr + 'hello-ua')
+	for(let i = 0; i < 10; i++){
+		if(correctAnsArr[i] == userAnsArr[i]){
+			console.log('yes')
+			$('.resultsUA' + i).css('color', 'green');
+		}else{
+			$('.resultsUA' + i).css('color', 'red');
+		}	
+	}
 }
 
 function playAgain(){
 	$('.playAgain').on('click', function(){
-		console.log('hello')
 		questionInfo = 0;
 		score = 0;
 		userAnsArr = [];
 		$.ajax('https://opentdb.com/api_token.php?command=request').done(function(data) {
 			sessionToken = data.token;
-			console.log(sessionToken)
 		});
 		callAPI();
 		$('.resultsPage').fadeOut(400);
