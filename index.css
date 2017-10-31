@@ -13,7 +13,7 @@ html, body, section{
 	display: none;
 }
 
-.startPage, .setup{
+.startPage, .setup, .questionPage{
 	position: relative;
 	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
 	background-size: 400% 400%;
@@ -61,7 +61,7 @@ html, body, section{
 	width:100%;
 	text-align: center;
 	position: absolute;
-	top:40%;
+	top:25%;
 }
 
 .category, .difficulty, .button{
@@ -85,21 +85,54 @@ span{
 
 .questionPage{
 	display:none;
-	border:solid 4px green;
-	height:500px;
-	width:500px;
+	position: relative;
 }
+
+.questionSection{
+	display:grid;
+	grid-template-rows: 2fr 1fr;
+	margin:auto;
+	margin-top: 30%;
+	background-color:white;
+	border:solid 4px black;
+	height:60%;
+	width:80%;
+	border:solid 7px black;
+	padding: 10px;
+}
+
+.question{
+	font-size: 20px;
+	font-weight:bold;
+	align-self:center;
+	text-align: center;
+	font-family: 'Audiowide', cursive;
+	letter-spacing: 1px;
+}
+
+.answers{
+	display: grid;
+    grid-template-columns: 10% 40% 10% 40%;
+	font-size: 16px;
+	margin:10px;
+}
+
+.answers input{
+		margin: 5px;
+	}
+	
 
 .correct, .incorrect, .noAnswer{
 	display:none;
-	height:300px;
-	width:300px;
+	height:200px;
+	width:200px;
 	position:relative;
-	top:300px;
+	top:30%;
 	margin:auto;
 	color:white;
 	background-color: grey;
 	opacity: 0.5;
+	border:solid 3px black;
 }
 
 .lightBox{
@@ -112,16 +145,16 @@ span{
 }
 
 .resultsScore{
-	font-size: 20px;
+	width: 350px;
+	font-size: 30px;
 	font-weight:bold;
 	position:relative;
 	text-align:center;
-	left: 50%;
 	top: 50%;
 	animation-name: slide;
 	animation-delay: 3s;
-	animation-duration: 5s;
-  	animation-timing-function: ease;
+	animation-duration: 3s;
+  	animation-timing-function: ease-in-out;
   	animation-fill-mode: forwards;
 }
 
@@ -133,7 +166,6 @@ span{
 
 .correctAnswers{
 	display: grid;
-	position: absolute;
 	padding: 5%;
 }
 
@@ -142,12 +174,10 @@ span{
 }
 
 .playAgain{
-	display: none;
+	display:none;
 	position: absolute;
-	left: 50%;
+	left: 40%;
 }
-
-
 
 .resultsQuestion{
 	color:blue;
@@ -165,14 +195,38 @@ span{
 
 @media (min-width:640px){
 
-	.correctAnswers{
-		grid-template-columns: 2fr 1fr 1fr;
-		justify-content:space-evenly;
+	.startPageContent, .setupContent{
+		top:40%;
 	}
 
-	@keyframes slide{
-		0%   {left:50%; top:50%;}
+	.questionSection{
+		margin-top: 15%;
+	}
+
+	.question{
+		font-size: 30px;
+		letter-spacing: 2px;
+	}
+
+	.answers{
+		font-size: 20px;
+		display: block;
+		text-align: center;
+	}
+
+	.correctAnswers{
+		grid-template-columns: 2fr 1fr 1fr;
+		justify-content:center;
+	}
+
+	.resultsScore, .playAgain{
+		left: 40%;
+	}
+
+@keyframes slide{
+		0%   {left:40%; top:50%;}
     	100% {left:0%; top:0%;}
 	}
+	
 
 }

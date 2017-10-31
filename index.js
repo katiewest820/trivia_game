@@ -168,12 +168,15 @@ function resultsPage(){
 		for(let i = 0; i < 10; i++){
 		$('.correctAnswers').append(`<div class="resultsQuestion">Question ${[i + 1]}: ${apiInfo[i].question}</div><div class="resultsCorrect">Correct answer: ${apiInfo[i].correct_answer}</div><div class="resultsUA">Your answer: ${userAnsArr[i]}</div>` )
 		}
-		//$('.playAgainDiv').html(`<button class="playAgain">Play Again</button>`);
-	}, 7000);
+		$('.playAgain').fadeIn(400);
+		//$('.resultsPage').append(`<button class="playAgain">Play Again</button>`);
+		//$('.playAgainDiv').fadeIn(400).add(`<button class="playAgain">Play Again</button>`);
+	}, 6000);
 }
 
 function playAgain(){
 	$('.playAgain').on('click', function(){
+		console.log('hello')
 		questionInfo = 0;
 		score = 0;
 		userAnsArr = [];
