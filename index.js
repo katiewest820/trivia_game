@@ -54,9 +54,11 @@ function shuffleArray(array) {
 }
 
 function callAPI(){
-	$('.categoryHeader').removeClass('animated bounceOutRight');
-	$('.categoryDropdowns').removeClass('animated bounceOutLeft');
+	//$('.categoryHeader').removeClass('animated bounceOutRight');
+	//$('.categoryDropdowns').removeClass('animated bounceOutLeft');
 	$('.button').on('click', function(){
+		// $('.categoryHeader').removeClass('animated bounceOutRight');
+		// $('.categoryDropdowns').removeClass('animated bounceOutLeft');
 	let categorySelection = $('.category').val();
 
 	console.log(categories[categorySelection])
@@ -65,11 +67,18 @@ function callAPI(){
 
 		$.ajax(`https://opentdb.com/api.php?amount=10&token=${sessionToken}&category=${categoryToken}&difficulty=${difficulty}`).done(function(data) {
 			console.log(data)
-
-			
-			apiInfo = data.results;
-			console.log(apiInfo)
-			loadQuestion()
+			if(data.response_code !== 0){
+				console.log('noooo')
+				$.ajax(`https://opentdb.com/api.php?amount=10&token=${sessionToken}&category=${categoryToken}`).done(function(data) {
+					apiInfo = data.results;
+					console.log(apiInfo)
+					loadQuestion()
+				});
+			}else{
+				apiInfo = data.results;
+				console.log(apiInfo)
+				loadQuestion()
+			}
 		});	
 	});
 }
@@ -134,7 +143,6 @@ function userAnswer(){
 			userAnsArr.push(ua);
 		}
 		console.log(userAnsArr)
-		//correctAnswer();
 		noAnswer();
 		endOfGame();
 	});
@@ -158,23 +166,21 @@ function resultsPage(){
 	$('.questionPage').fadeOut(400);
 	$('.resultsPage').fadeIn(400).css('display', 'grid');
 	$('.resultsScore').html(`Your Score is: ${score} out of 10`);
-	//resultsColor();
-	setTimeout(function(){
-		for(let i = 0; i < 10; i++){
-		$('.correctAnswers').fadeIn(400).css('display', 'grid').append(`<div class="resultsQuestion">Q ${[i + 1]}:
-		${apiInfo[i].question}</div><div class="resultsCorrect">Correct answer: ${apiInfo[i].correct_answer}</div>
-		<div class="resultsUA${i}">Your answer: ${userAnsArr[i]}</div>` )
-		}
-		resultsColor();
-		$('.playAgain').fadeIn(400);
-	}, 6000);
 	
+		for(let i = 0; i < 10; i++){
+			$('.correctAnswers').fadeIn(400).css('display', 'grid').append(`<div class="resultsQuestion">Q ${[i + 1]}:
+			${apiInfo[i].question}</div><div class="resultsCorrect">Correct answer: ${apiInfo[i].correct_answer}</div>
+			<div class="resultsUA${i}">Your answer: ${userAnsArr[i]}</div>` )
+			resultsColor();
+		}
+		//resultsColor();
+	$('.playAgain').fadeIn(400);
 }
 
 function resultsColor(){
 	console.log('hello')
-	console.log(correctAnsArr + 'hello-c')
-	console.log(userAnsArr + 'hello-ua')
+	console.log(correctAnsArr);
+	console.log(userAnsArr);
 	for(let i = 0; i < 10; i++){
 		if(correctAnsArr[i] == userAnsArr[i]){
 			console.log('yes')
@@ -187,16 +193,23 @@ function resultsColor(){
 
 function playAgain(){
 	$('.playAgain').on('click', function(){
+		//$('.correctAnswers').empty();
 		questionInfo = 0;
 		score = 0;
 		userAnsArr = [];
+		correctAnsArr = [];
+		answers = [];
 		$.ajax('https://opentdb.com/api_token.php?command=request').done(function(data) {
 			sessionToken = data.token;
+			$('.playAgain').fadeOut(200);
+			$('.correctAnswers').empty();
+			$('.correctAnswers').fadeOut(200);
+			$('.resultsPage').fadeOut(400);
+			$('.setup').fadeIn(400);
+			$('.categoryHeader').removeClass('animated bounceOutRight');
+			$('.categoryDropdowns').removeClass('animated bounceOutLeft');
 		});
-		callAPI();
-		$('.resultsPage').fadeOut(400);
-		$('.setup').fadeIn(400);
-	})
+	});
 }
 
 

@@ -13,7 +13,7 @@ html, body, section{
 	display: none;
 }
 
-.startPage, .setup, .questionPage, .resultsPage{
+.startPage, .setup, .questionPage, .resultsPage, .lightBox{
 	position: relative;
 	background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
 	background-size: 400% 400%;
@@ -37,7 +37,7 @@ html, body, section{
 	transition: all 1s ease;
 	font-size: 18px;
 	margin-top:20px;
-	padding: 20px 100px;
+	padding: 20px 80px;
 	border-radius: 8px;
 	background-color: white;
 	font-weight: bold;
@@ -49,7 +49,7 @@ html, body, section{
 }
 
 .startPageContent h1, .setupContent h1, .resultsScore{
-	font-size: 40px;
+	font-size: 35px;
 	color: white;
 	font-weight: bold;
 }
@@ -97,7 +97,7 @@ span{
 	background-color:white;
 	border:solid 4px black;
 	height:80%;
-	width:80%;
+	width:90%;
 	border:solid 7px black;
 	padding: 20px;
 }
@@ -138,27 +138,32 @@ span{
 	font-weight: bold;
 }	
 	
+.lightBox{
+	display:none;
+	overflow: hidden;	
+}	
 
 .noAnswer{
 	display:none;
+	text-align: center;
 	height:200px;
 	width:200px;
 	position:relative;
 	top:30%;
 	margin:auto;
 	color:white;
-	background-color: grey;
-	opacity: 0.5;
-	border:solid 3px black;
+	background-color: black;
+	border:solid 3px white;
 }
 
-.lightBox{
-	display:none;	
+.noAnswer h1{
+	position: absolute;
+	top:30%;
 }
 
 .resultsPage{
 	display:none;
-	height: 1600px;
+	height: 1900px;
 	position: relative;
 	overflow: visible;
 	padding-top:2%;
@@ -171,19 +176,8 @@ span{
 	position:relative;
 	text-align:center;
 	margin:auto;
-	top: 20%;
-	animation-name: slide;
-	animation-delay: 3s;
-	animation-duration: 3s;
-  	animation-timing-function: ease-in-out;
-  	animation-fill-mode: forwards;
 }
 
-@keyframes slide{
-	0%   {top:20%;}
-    100% {top:0%;}
-
-}
 .correctAnswers{
 	display: none;
 	padding: 5%;
@@ -211,7 +205,12 @@ span{
 		top:40%;
 	}
 
+	.startPageContent h1, .setupContent h1{
+		font-size: 40px;
+	}
+
 	.questionSection{
+		width: 80%;
 		height:60%;
 		padding: 40px;
 		margin-top: 10%;
@@ -243,15 +242,5 @@ span{
 		grid-template-rows: 3% 94% 3%;
 		padding: 2% 0%;
 	}
-
-	.resultsScore{
-		top: 30%;
-	}	
-
-@keyframes slide{
-		0%   {top:30%;}
-    	100% { top:0%;}
-	}
 	
-
 }
