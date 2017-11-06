@@ -117,7 +117,7 @@ span{
     margin: 0 20px;
 	font-size: 16px;
 	text-align: center;
-	margin:25px;
+	margin:40px;
 }
 
 .answers input{
@@ -128,7 +128,8 @@ span{
 	justify-self: center;
 	width:180px;
 	margin-top:20px;
-
+	background-color: black
+	color:white;
 }
 
 .questionNumber{
@@ -140,7 +141,6 @@ span{
 	
 .lightBox{
 	display:none;
-	overflow: hidden;	
 }	
 
 .noAnswer{
@@ -194,8 +194,16 @@ span{
 .playAgain{
 	display:none;
 	justify-self:center;
-	padding: 15px 40px;
+	padding: 15px 50px;
+	margin-bottom: 30px;
+	font-size: 18px;
+	font-weight: bold;
 	align-self:center;
+}
+
+.playAgain:hover{
+	background-color: black;
+	color:white;
 }
 
 
@@ -231,10 +239,14 @@ span{
 		margin: 10px 0px;
 	}
 
+	.lightBox{
+		height:900px;
+	}
+
 	.correctAnswers{
 		grid-template-columns: 2fr 1fr 1fr;
 		justify-content:center;
-		padding: 2%;
+		padding: 1%;
 	}
 
 	.resultsPage{

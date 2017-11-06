@@ -9,7 +9,6 @@ let categories = {
 	enB: 10, 
 	enF: 11,
 	enM: 12,
-	//enMTh: 13,
 	enT: 14,
 	enVG: 15,
 	enBG: 16,
@@ -21,7 +20,6 @@ let categories = {
 	geo: 22,
 	hist: 23,
 	poli: 24,
-	//art: 25,
 	celeb: 26,
 	animal: 27,
 	veh: 28
@@ -54,17 +52,11 @@ function shuffleArray(array) {
 }
 
 function callAPI(){
-	//$('.categoryHeader').removeClass('animated bounceOutRight');
-	//$('.categoryDropdowns').removeClass('animated bounceOutLeft');
 	$('.button').on('click', function(){
-		// $('.categoryHeader').removeClass('animated bounceOutRight');
-		// $('.categoryDropdowns').removeClass('animated bounceOutLeft');
 	let categorySelection = $('.category').val();
-
 	console.log(categories[categorySelection])
-	let categoryToken = categories[categorySelection]
+	let categoryToken = categories[categorySelection];
 	let difficulty = $('.difficulty').val();
-
 		$.ajax(`https://opentdb.com/api.php?amount=10&token=${sessionToken}&category=${categoryToken}&difficulty=${difficulty}`).done(function(data) {
 			console.log(data)
 			if(data.response_code !== 0){
@@ -77,7 +69,7 @@ function callAPI(){
 			}else{
 				apiInfo = data.results;
 				console.log(apiInfo)
-				loadQuestion()
+				loadQuestion();
 			}
 		});	
 	});
@@ -85,14 +77,13 @@ function callAPI(){
 
 function loadQuestion(){
 	if(questionInfo <= 9){
-	answers.push(apiInfo[questionInfo].correct_answer);
-	correctAnsArr.push(apiInfo[questionInfo].correct_answer);
-
+		answers.push(apiInfo[questionInfo].correct_answer);
+		correctAnsArr.push(apiInfo[questionInfo].correct_answer);
 	for(let i = 0; i < apiInfo[questionInfo].incorrect_answers.length; i++){
-	answers.push(apiInfo[questionInfo].incorrect_answers[i]);
+		answers.push(apiInfo[questionInfo].incorrect_answers[i]);
 	}
 	console.log(answers)
-	shuffleArray(answers)
+	shuffleArray(answers);
 	$('.question').html(apiInfo[questionInfo].question);
 	$('.questionNumber').html(`${questionInfo + 1} of 10`);
 	for(let i = 0; i < answers.length; i++){
@@ -173,7 +164,6 @@ function resultsPage(){
 			<div class="resultsUA${i}">Your answer: ${userAnsArr[i]}</div>` )
 			resultsColor();
 		}
-		//resultsColor();
 	$('.playAgain').fadeIn(400);
 }
 
@@ -183,7 +173,6 @@ function resultsColor(){
 	console.log(userAnsArr);
 	for(let i = 0; i < 10; i++){
 		if(correctAnsArr[i] == userAnsArr[i]){
-			console.log('yes')
 			$('.resultsUA' + i).css('color', 'green');
 		}else{
 			$('.resultsUA' + i).css('color', 'red');
@@ -193,7 +182,6 @@ function resultsColor(){
 
 function playAgain(){
 	$('.playAgain').on('click', function(){
-		//$('.correctAnswers').empty();
 		questionInfo = 0;
 		score = 0;
 		userAnsArr = [];
@@ -212,12 +200,12 @@ function playAgain(){
 	});
 }
 
-
+$(function(){
 userAnswer()
 callAPI()
 nextQ()
 setup()
 playAgain()
-
+});
 
 
