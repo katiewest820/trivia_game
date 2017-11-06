@@ -2,7 +2,7 @@
 
 Trivia game created with [Open Trivia Databas API](https://opentdb.com/)
 
-##Technologies used:
+### Technologies used:
 - HTML
 - CSS & CSS Animations
 - Javascript
