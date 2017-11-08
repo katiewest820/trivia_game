@@ -87,7 +87,7 @@ function loadQuestion(){
 	$('.question').html(apiInfo[questionInfo].question);
 	$('.questionNumber').html(`${questionInfo + 1} of 10`);
 	for(let i = 0; i < answers.length; i++){
-		$('.answers').append(`<input type="radio" name="answer" value="${answers[i]}">${answers[i]}`);
+		$('.answers').append(`<label for="${answers[i]}"><input type="radio" name="answer" class="${answers[i]}" value="${answers[i]}">${answers[i]}</label>`);
 	}
 	$('.categoryHeader').addClass('animated bounceOutRight');
 	$('.categoryDropdowns').addClass('animated bounceOutLeft');	
