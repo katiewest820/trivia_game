@@ -189,11 +189,11 @@ function playAgain(){
 		answers = [];
 		$.ajax('https://opentdb.com/api_token.php?command=request').done(function(data) {
 			sessionToken = data.token;
-			$('.playAgain').fadeOut(200);
-			$('.correctAnswers').empty();
-			$('.correctAnswers').fadeOut(200);
-			$('.resultsPage').fadeOut(400);
-			$('.setup').fadeIn(400);
+			$('.playAgain').fadeOut();
+			$('.correctAnswers').fadeOut();
+			$('.correctAnswers').fadeOut();
+			$('.resultsPage').fadeOut(200);
+			$('.setup').fadeIn(200);
 			$('.categoryHeader').removeClass('animated bounceOutRight');
 			$('.categoryDropdowns').removeClass('animated bounceOutLeft');
 		});
