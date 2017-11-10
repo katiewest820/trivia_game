@@ -190,10 +190,9 @@ function playAgain(){
 		$.ajax('https://opentdb.com/api_token.php?command=request').done(function(data) {
 			sessionToken = data.token;
 			$('.playAgain').fadeOut();
-			$('.correctAnswers').fadeOut();
-			$('.correctAnswers').fadeOut();
-			$('.resultsPage').fadeOut(200);
-			$('.setup').fadeIn(200);
+			$('.correctAnswers').empty();
+			$('.resultsPage').fadeOut(100);
+			$('.setup').fadeIn(100);
 			$('.categoryHeader').removeClass('animated bounceOutRight');
 			$('.categoryDropdowns').removeClass('animated bounceOutLeft');
 		});
