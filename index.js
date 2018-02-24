@@ -2,7 +2,7 @@ let sessionToken;
 let questionInfo = 0;
 let apiInfo;
 let userAnsArr = [];
-let correctAnsArr = []
+let correctAnsArr = [];
 let score = 0;
 let categories = {
 	gn: 9,
@@ -23,15 +23,13 @@ let categories = {
 	celeb: 26,
 	animal: 27,
 	veh: 28
-}
+};
 let answers = [];
-
 
 function setup(){
 	$('.start').on('click', function(){
 		$.ajax('https://opentdb.com/api_token.php?command=request').done(function(data) {
 			sessionToken = data.token;
-			console.log(sessionToken)
 		});
 	$('.greeting').addClass('animated bounceOutRight');
 	$('.start').addClass('animated bounceOutLeft');	
@@ -54,24 +52,21 @@ function shuffleArray(array) {
 function callAPI(){
 	$('.button').on('click', function(){
 	let categorySelection = $('.category').val();
-	console.log(categories[categorySelection])
 	let categoryToken = categories[categorySelection];
 	let difficulty = $('.difficulty').val();
-		$.ajax(`https://opentdb.com/api.php?amount=10&token=${sessionToken}&category=${categoryToken}&difficulty=${difficulty}`).done(function(data) {
-			console.log(data)
+		$.ajax(`https://opentdb.com/api.php?amount=10&token=${sessionToken}&category=${categoryToken}&difficulty=${difficulty}`)
+		.done(function(data) {
 			if(data.response_code !== 0){
-				console.log('noooo')
-				$.ajax(`https://opentdb.com/api.php?amount=10&token=${sessionToken}&category=${categoryToken}`).done(function(data) {
-					apiInfo = data.results;
-					console.log(apiInfo)
-					loadQuestion()
+				$.ajax(`https://opentdb.com/api.php?amount=10&token=${sessionToken}&category=${categoryToken}`)
+					.done(function(data) {
+						apiInfo = data.results;
+						loadQuestion();
 				});
 			}else{
 				apiInfo = data.results;
-				console.log(apiInfo)
 				loadQuestion();
 			}
-		});	
+		});
 	});
 }
 
@@ -82,7 +77,6 @@ function loadQuestion(){
 	for(let i = 0; i < apiInfo[questionInfo].incorrect_answers.length; i++){
 		answers.push(apiInfo[questionInfo].incorrect_answers[i]);
 	}
-	console.log(answers)
 	shuffleArray(answers);
 	$('.question').html(apiInfo[questionInfo].question);
 	$('.questionNumber').html(`${questionInfo + 1} of 10`);
@@ -96,7 +90,6 @@ function loadQuestion(){
 		$('.questionPage').fadeIn(300).css('display', 'block');
 	}, 600);
 	}
-	console.log(answers)
 }
 
 function nextQ(){
@@ -104,11 +97,10 @@ function nextQ(){
 		if(ua == undefined){
 			return;
 		}else{
-			clearAnswers()
+			clearAnswers();
 			answers = [];
 			questionInfo = questionInfo + 1;
-			loadQuestion()
-			console.log(questionInfo)
+			loadQuestion();
 		}
 	});
 }
@@ -124,16 +116,15 @@ function noAnswer(){
 }
 
 function clearAnswers(){
-	$('.answers').empty()
+	$('.answers').empty();
 }
 
 function userAnswer(){
 	$('.nextQ').on('click', function(){
-		ua = $('.answers').find('input:checked').val()
+		ua = $('.answers').find('input:checked').val();
 		if(ua !== undefined ){
 			userAnsArr.push(ua);
 		}
-		console.log(userAnsArr)
 		noAnswer();
 		endOfGame();
 	});
@@ -154,6 +145,7 @@ function endOfGame(){
 }
 
 function resultsPage(){
+	$('.correctAnswers').empty();
 	$('.questionPage').fadeOut(400);
 	$('.resultsPage').fadeIn(400).css('display', 'grid');
 	$('.resultsScore').html(`Your Score is: ${score} out of 10`);
@@ -161,16 +153,13 @@ function resultsPage(){
 		for(let i = 0; i < 10; i++){
 			$('.correctAnswers').fadeIn(400).css('display', 'grid').append(`<div class="resultsQuestion">Q ${[i + 1]}:
 			${apiInfo[i].question}</div><div class="resultsCorrect">Correct answer: ${apiInfo[i].correct_answer}</div>
-			<div class="resultsUA${i}">Your answer: ${userAnsArr[i]}</div>` )
+			<div class="resultsUA${i}">Your answer: ${userAnsArr[i]}</div>` );
 			resultsColor();
 		}
 	$('.playAgain').fadeIn(400);
 }
 
 function resultsColor(){
-	console.log('hello')
-	console.log(correctAnsArr);
-	console.log(userAnsArr);
 	for(let i = 0; i < 10; i++){
 		if(correctAnsArr[i] == userAnsArr[i]){
 			$('.resultsUA' + i).css('color', 'green');
@@ -189,10 +178,8 @@ function playAgain(){
 		answers = [];
 		$.ajax('https://opentdb.com/api_token.php?command=request').done(function(data) {
 			sessionToken = data.token;
-			$('.playAgain').fadeOut();
-			$('.correctAnswers').empty();
-			$('.resultsPage').fadeOut(100);
-			$('.setup').fadeIn(100);
+			$('.resultsPage').fadeOut(200);
+			$('.setup').fadeIn(200);
 			$('.categoryHeader').removeClass('animated bounceOutRight');
 			$('.categoryDropdowns').removeClass('animated bounceOutLeft');
 		});
@@ -200,11 +187,11 @@ function playAgain(){
 }
 
 $(function(){
-userAnswer()
-callAPI()
-nextQ()
-setup()
-playAgain()
+userAnswer();
+callAPI();
+nextQ();
+setup();
+playAgain();
 });
 
 
